@@ -76,7 +76,7 @@ class Organism:
     world_x = deme_x
     world_y = deme_y
     cell_x = cellID % world_x
-    cell_y = (cellID - cell_x)/world_x
+    cell_y = int((cellID - cell_x)/world_x) #this was a float somehow one, debug
     neighbor_ids = []
     for i in range(cell_x-radius, cell_x+radius+1):
       for j in range(cell_y-radius, cell_y+radius+1):
@@ -289,7 +289,7 @@ class Population:
 
 def parseArgs(parser):
   ''' A function to parse the command line arguments'''
-  parser.add_argument('--num_demes', help="the number of demes that should be created, default is 1",default=1, type=int)
+  parser.add_argument('--num_demes', help="the number of demes that should be created, default is 2 so tournament comp works",default=2, type=int)
   parser.add_argument('--cheat_demes', help="the number of demes to start off with cheaters",default=0, type=int)
   parser.add_argument("--prop_cheaters", help="the proportion of cheaters to start cheating demes with", default = 0.5, type=float)
   parser.add_argument('deme_x', help="the x value for the deme size", type=int)
